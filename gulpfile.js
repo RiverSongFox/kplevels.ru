@@ -6,6 +6,7 @@ var del = require('del')
 var gulp = require('gulp')
 var htmlmin = require('gulp-htmlmin')
 var runSequence = require('run-sequence')
+var imagemin = require('gulp-imagemin')
 
 // Set the browser that you want to support
 const AUTOPREFIXER_BROWSERS = [
@@ -36,6 +37,12 @@ gulp.task('pages', function () {
     .pipe(gulp.dest('./dist'))
 })
 
+gulp.task('images', function () {
+  return gulp.src('src/images/**/*')
+    .pipe(imagemin())
+    .pipe(gulp.dest('dist/images'))
+})
+
 gulp.task('clean', function () {
   return del(['dist'])
 })
@@ -43,6 +50,7 @@ gulp.task('clean', function () {
 gulp.task('watch', function () {
   gulp.watch('./src/**/*.css', ['styles'])
   gulp.watch('./src/**/*.html', ['pages'])
+  gulp.watch('./src/images/*', ['images'])
 })
 
 gulp.task('default', function (cb) {
@@ -50,7 +58,8 @@ gulp.task('default', function (cb) {
     'clean',
     [
       'styles',
-      'pages'
+      'pages',
+      'images'
     ],
     cb
   )
