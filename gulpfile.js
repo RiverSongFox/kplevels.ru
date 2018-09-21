@@ -5,6 +5,7 @@ var csso = require('gulp-csso')
 var del = require('del')
 var gulp = require('gulp')
 var htmlmin = require('gulp-htmlmin')
+var importCss = require('gulp-import-css');
 var runSequence = require('run-sequence')
 var imagemin = require('gulp-imagemin')
 
@@ -23,6 +24,7 @@ const AUTOPREFIXER_BROWSERS = [
 
 gulp.task('styles', function () {
   return gulp.src('./src/css/styles.css')
+    .pipe(importCss())
     .pipe(autoprefixer({ browsers: AUTOPREFIXER_BROWSERS }))
     .pipe(csso())
     .pipe(gulp.dest('./dist'))
