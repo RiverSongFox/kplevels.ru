@@ -45,6 +45,12 @@ gulp.task('images', function () {
     .pipe(gulp.dest('dist/images'))
 })
 
+gulp.task('favicons', function () {
+  return gulp
+    .src('src/favicons/*.*')
+    .pipe(gulp.dest('dist/'))
+})
+
 gulp.task('clean', function () {
   return del(['dist'])
 })
@@ -53,6 +59,7 @@ gulp.task('watch', function () {
   gulp.watch('./src/**/*.css', ['styles'])
   gulp.watch('./src/**/*.html', ['pages'])
   gulp.watch('./src/images/*', ['images'])
+  gulp.watch('./src/favicons/*', ['favicons'])
 })
 
 gulp.task('default', function (cb) {
@@ -61,7 +68,8 @@ gulp.task('default', function (cb) {
     [
       'styles',
       'pages',
-      'images'
+      'images',
+      'favicons'
     ],
     cb
   )
