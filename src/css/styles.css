@@ -29,6 +29,10 @@
     font-size: 2rem;
 }
 
+.text ul {
+    margin-bottom: 1rem;
+}
+
 .text li {
     padding: 0.3rem 0;
     margin-bottom: 0.2rem;
@@ -40,6 +44,16 @@
 
 .text a:hover {
     color: #C94509;
+}
+
+.copyright {
+    padding: 0.5rem 0;
+    line-height: 1.2rem;
+    color: #6F5F54;
+}
+
+.copyright a {
+    text-decoration: none;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
