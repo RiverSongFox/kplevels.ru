@@ -32,7 +32,7 @@ gulp.task('styles', function () {
 })
 
 gulp.task('pages', function () {
-  return gulp.src(['./src/**/*.html'])
+  return gulp.src(['./src/*.html'])
     .pipe(htmlmin({
       collapseWhitespace: true,
       removeComments: true
@@ -48,7 +48,13 @@ gulp.task('images', function () {
 
 gulp.task('favicons', function () {
   return gulp
-    .src('src/favicons/*.*')
+    .src('src/favicons/*')
+    .pipe(gulp.dest('dist/'))
+})
+
+gulp.task('servicefiles', function () {
+  return gulp
+    .src('./src/servicefiles/*')
     .pipe(gulp.dest('dist/'))
 })
 
@@ -61,6 +67,7 @@ gulp.task('watch', function () {
   gulp.watch('./src/**/*.html', ['pages'])
   gulp.watch('./src/images/*', ['images'])
   gulp.watch('./src/favicons/*', ['favicons'])
+  gulp.watch('./src/servicefiles/*', ['servicefiles'])
 })
 
 gulp.task('surge', [], function () {
@@ -77,7 +84,8 @@ gulp.task('default', function (cb) {
       'styles',
       'pages',
       'images',
-      'favicons'
+      'favicons',
+      'servicefiles'
     ],
     cb
   )
