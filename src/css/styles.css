@@ -4,20 +4,14 @@
     font-family: 'Marmelad', sans-serif;
 
     box-sizing: border-box;
-    position: absolute;
 
-    top: 50%;
-    left: 50%;
-
-    margin: -164px 0 0 -375px;
-    
-    width: 750px;
-    height: 328px;
-    
-    padding-left: 250px;
-
-    background-image: url(images/kuplinov-pogo.png);
+    background-size: 250px 328px;
     background-repeat: no-repeat;
+
+    background-image: image-set(
+        url(images/kuplinov-pogo-lo.png) 1x,
+        url(images/kuplinov-pogo-hi.png) 2x
+    );
 }
 
 .text h1,
@@ -56,15 +50,35 @@
     text-decoration: none;
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
-    .container {
-        background-image: url(images/kuplinov-pogo.png);
 
-        margin: -328px 0 0 -750px;
-    
-        width: 1500px;
-        height: 655px;
-        
-        padding-left: 500px;
+/* Mobile */
+
+.container {
+    margin: 1rem;
+    background-position-x: center;
+
+    padding-top: 328px;
+}
+
+
+/* Desktop */
+
+@media (min-width: 600px) {
+    .container {
+        position: absolute;
+
+        top: 50%;
+        left: 50%;
+
+        margin: -164px 0 0 -375px;
+
+        width: 750px;
+        height: 328px;
+
+        padding-left: 250px;
+
+        /* Override Mobile styles */
+        background-position-x: initial;
+        padding-top: 0;
     }
 }
