@@ -5,9 +5,10 @@ var csso = require('gulp-csso')
 var del = require('del')
 var gulp = require('gulp')
 var htmlmin = require('gulp-htmlmin')
-var importCss = require('gulp-import-css');
+var importCss = require('gulp-import-css')
 var runSequence = require('run-sequence')
 var imagemin = require('gulp-imagemin')
+var surge = require('gulp-surge')
 
 // Set the browser that you want to support
 const AUTOPREFIXER_BROWSERS = [
@@ -62,6 +63,13 @@ gulp.task('watch', function () {
   gulp.watch('./src/favicons/*', ['favicons'])
 })
 
+gulp.task('surge', [], function () {
+  return surge({
+    project: './dist',
+    domain: 'kplevels.ru'
+  })
+})
+
 gulp.task('default', function (cb) {
   runSequence(
     'clean',
@@ -73,4 +81,8 @@ gulp.task('default', function (cb) {
     ],
     cb
   )
+})
+
+gulp.task('deploy', function (cb) {
+  runSequence('default', 'surge', cb)
 })
