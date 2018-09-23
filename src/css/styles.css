@@ -4,17 +4,6 @@
     font-family: 'Marmelad', sans-serif;
 
     box-sizing: border-box;
-    position: absolute;
-
-    top: 50%;
-    left: 50%;
-
-    margin: -164px 0 0 -375px;
-    
-    width: 750px;
-    height: 328px;
-    
-    padding-left: 250px;
 
     background-image: url(images/kuplinov-pogo.png);
     background-repeat: no-repeat;
@@ -56,15 +45,33 @@
     text-decoration: none;
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
-    .container {
-        background-image: url(images/kuplinov-pogo.png);
+@media (min-width: 600px) {
 
-        margin: -328px 0 0 -750px;
-    
-        width: 1500px;
-        height: 655px;
-        
-        padding-left: 500px;
+    .container {
+        position: absolute;
+
+        top: 50%;
+        left: 50%;
+
+        margin: -164px 0 0 -375px;
+
+        width: 750px;
+        height: 328px;
+
+        padding-left: 250px;
     }
+
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+        .container {
+            background-image: url(images/kuplinov-pogo@2x.png);
+
+            margin: -328px 0 0 -750px;
+
+            width: 1500px;
+            height: 655px;
+
+            padding-left: 500px;
+        }
+    }
+
 }
