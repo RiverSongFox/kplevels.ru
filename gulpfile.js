@@ -70,27 +70,24 @@ gulp.task('watch', function () {
   gulp.watch('./src/servicefiles/*', ['servicefiles'])
 })
 
-gulp.task('surge', [], function () {
+gulp.task('surge', function () {
   return surge({
     project: './dist',
     domain: 'kplevels.ru'
   })
 })
 
-gulp.task('default', function (cb) {
-  runSequence(
+gulp.task('default',
+  gulp.series(
     'clean',
-    [
+    gulp.parallel([
       'styles',
       'pages',
       'images',
       'favicons',
       'servicefiles'
-    ],
-    cb
+    ])
   )
-})
+)
 
-gulp.task('deploy', function (cb) {
-  runSequence('default', 'surge', cb)
-})
+gulp.task('deploy', gulp.series('default', 'surge'))
